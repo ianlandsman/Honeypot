@@ -1,11 +1,4 @@
-<style type="text/css">
-#{{ Config::get('honeypot::default.honeypot_field') }}_wrap
-{
-	display: none !important;
-}
-</style>
-
-<div id="{{ Config::get('honeypot::default.honeypot_field') }}_wrap">
-	{{ Form::text(Config::get('honeypot::default.honeypot_field'), '', array('id' => Config::get('honeypot::default.honeypot_field'))) }}
-	{{ Form::hidden(Config::get('honeypot::default.honeypot_field').'_time', time()) }}
+<div id="{{ $honey_name }}_wrap" style="display:none;">
+	{{ Form::text($honey_name, '', array('id' => $honey_name)) }}
+	{{ Form::hidden($honey_time, time()) }}
 </div>

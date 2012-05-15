@@ -16,19 +16,16 @@ Add the Honeypot fields to your form
 
 	{{ Form::open('save') }}
 
-		{{ Form::honeypot() }}
+		{{ Form::honeypot('honey_field_name', 'time_field_name') }}
 		....
 	{{ Form::close() }}
 
-Then use Honeypot's custom form validators to check your form date. For example:
-
-	$honeyfield = Config::get('honeypot::default.honeypot_field');
-	$honeytime	= Config::get('honeypot::default.honeypot_field').'_time';
+Then use Honeypot's custom form validators to check your form date. Note the honeytime takes a number for the minimum seconds it should take to fill out the form for a human. If it takes less time than that we fail the test. For example:
 
 	$rules = array(
-		'email' 	=> "required|email",
-		$honeyfield => 'honeypot',
-		$honeytime	=> 'honeytime|required'
+		'email' 			=> "required|email",
+		'field_name' 		=> 'honeypot',
+		'field_name_time'	=> 'required|honeytime:5'
 	);
 
 	$validator = Validator::make(Input::get(), $rules);

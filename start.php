@@ -2,9 +2,9 @@
 
 // Create a Form macro which generates the fake honeypot field 
 // as well as the time check field
-Form::macro('honeypot', function()
+Form::macro('honeypot', function($honey_name, $honey_time)
 {
-	return View::make("honeypot::fields");
+	return View::make("honeypot::fields", get_defined_vars());
 });
 
 // We add a custom validator to validate the honeypot text and time check fields
@@ -17,5 +17,5 @@ Validator::register('honeypot', function($attribute, $value, $parameters)
 Validator::register('honeytime', function($attribute, $value, $parameters)
 {
 	// The current time should be greater than the time the form was built + the speed option
-    return ( is_numeric($value) && time() > ($value + Config::get('honeypot::default.honeypot_speed')) );
+    return ( is_numeric($value) && time() > ($value + $parameters[0]) );
 });
