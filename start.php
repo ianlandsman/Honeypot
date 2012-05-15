@@ -16,6 +16,9 @@ Validator::register('honeypot', function($attribute, $value, $parameters)
 
 Validator::register('honeytime', function($attribute, $value, $parameters)
 {
+	// The timestamp is encrypted so let's decrypt it
+	$value = Crypter::decrypt($value);
+
 	// The current time should be greater than the time the form was built + the speed option
     return ( is_numeric($value) && time() > ($value + $parameters[0]) );
 });
