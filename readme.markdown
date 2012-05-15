@@ -29,7 +29,3 @@ Then use Honeypot's custom form validators to check your form date. Note the hon
 	);
 
 	$validator = Validator::make(Input::get(), $rules);
-
-## Configuration
-
-You'll find a config file in the config folder that lets you set the name of the honeypot field as well as set the speed check seconds value.
