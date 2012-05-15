@@ -12,6 +12,14 @@ In your applications bundles.php put:
 		'honeypot' => array('auto' => true),
 	);
 
+Add the Honeypot fields to your form
+
+	{{ Form::open('save') }}
+
+		{{ Form::honeypot() }}
+		....
+	{{ Form::close() }}
+
 Then use Honeypot's custom form validators to check your form date. For example:
 
 	$honeyfield = Config::get('honeypot::default.honeypot_field');
