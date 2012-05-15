@@ -17,5 +17,5 @@ Validator::register('honeypot', function($attribute, $value, $parameters)
 Validator::register('honeytime', function($attribute, $value, $parameters)
 {
 	// The current time should be greater than the time the form was built + the speed option
-    return time() > ($value + Config::get('honeypot::default.honeypot_speed'));
+    return ( is_numeric($value) && time() > ($value + Config::get('honeypot::default.honeypot_speed')) );
 });
